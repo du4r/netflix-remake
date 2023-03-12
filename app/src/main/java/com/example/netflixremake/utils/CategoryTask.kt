@@ -16,6 +16,8 @@ import javax.net.ssl.HttpsURLConnection
 
 class CategoryTask(val callback: Callback){
     private val handler = Handler(Looper.getMainLooper())
+    private val executor = Executors.newSingleThreadExecutor()
+
 
     interface Callback{
         fun onResult(categories: List<Category>)
@@ -25,8 +27,6 @@ class CategoryTask(val callback: Callback){
 
     fun execute(url: String){
         callback.onPreExecute()
-
-        val executor = Executors.newSingleThreadExecutor()
 
         executor.execute{
             var urlConnection: HttpsURLConnection? = null
@@ -68,15 +68,13 @@ class CategoryTask(val callback: Callback){
                     callback.onFailure(message)
                 }
             }finally {
-                if (urlConnection != null) {
-                    urlConnection.disconnect()
-                }
-                if (stream != null) {
-                    stream.close()
-                }
-                if (buffer != null) {
-                    buffer.close()
-                }
+
+                    urlConnection?.disconnect()
+
+                    stream?.close()
+
+                    buffer?.close()
+
             }
         }
     }
