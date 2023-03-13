@@ -10,14 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.netflixremake.models.Movie
 import com.example.netflixremake.utils.DownloadImageTask
 
-class MovieAdapter(private val movies: List<Movie>,
-                   @LayoutRes private val layoutId: Int
+class MovieAdapter(
+    private val movies: List<Movie>,
+    @LayoutRes private val layoutId: Int,
+    private val onItemClickListener: ((Int) -> Unit)? = null
 ): RecyclerView.Adapter<MovieAdapter.movieViewHolder>() {
 
 
-    class movieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class movieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie){
             val imageCover: ImageView = itemView.findViewById(R.id.iv_movie)
+
+
+            imageCover.setOnClickListener {
+                onItemClickListener?.invoke(movie.id)
+            }
+
             DownloadImageTask(object : DownloadImageTask.Callback{
                 override fun onResult(bitmap: Bitmap) {
                     imageCover.setImageBitmap(bitmap)

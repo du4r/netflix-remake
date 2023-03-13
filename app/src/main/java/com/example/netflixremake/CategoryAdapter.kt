@@ -10,17 +10,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.netflixremake.models.Category
 import com.example.netflixremake.models.Movie
 
-class CategoryAdapter(private val categories: List<Category>): RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(
+    private val categories: List<Category>,
+    private val onItemClickListener: ((Int) -> Unit)? = null
+    ): RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
 
-    class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(category: Category){
             val txtTitle: TextView = itemView.findViewById(R.id.tv_title)
             txtTitle.text = category.title
 
             val rvCategory: RecyclerView = itemView.findViewById(R.id.rv_category)
             rvCategory.layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
-            rvCategory.adapter = MovieAdapter(category.movies, R.layout.movie_item)
+            rvCategory.adapter = MovieAdapter(category.movies, R.layout.movie_item, onItemClickListener)
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.netflixremake
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,17 +14,23 @@ import com.example.netflixremake.models.Movie
 import com.example.netflixremake.utils.CategoryTask
 
 class MainActivity : AppCompatActivity(), CategoryTask.Callback {
+
     private lateinit var rvMain: RecyclerView
     private lateinit var progressMain: ProgressBar
     private val categories = mutableListOf<Category>()
-    private val adapter = CategoryAdapter(categories)
+    private lateinit var adapter: CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         progressMain = findViewById(R.id.progress_main)
+
+        adapter = CategoryAdapter(categories){ id ->
+            val intent = Intent(this@MainActivity, MovieActivity::class.java)
+            intent.putExtra("id", id)
+            startActivity(intent)
+        }
 
         rvMain = findViewById(R.id.rv_main)
         rvMain.layoutManager = LinearLayoutManager(this)
