@@ -1,11 +1,10 @@
-package com.example.netflixremake
+package com.example.netflixremake.ui
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -16,6 +15,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.netflixremake.ui.adapters.MovieAdapter
+import com.example.netflixremake.R
 import com.example.netflixremake.models.Movie
 import com.example.netflixremake.models.MovieDetail
 import com.example.netflixremake.utils.DownloadImageTask
@@ -80,7 +81,9 @@ class MovieActivity : AppCompatActivity(), MovieTask.Callback {
 
         DownloadImageTask(object : DownloadImageTask.Callback{
             override fun onResult(bitmap: Bitmap) {
-                val layerDrawable: LayerDrawable = ContextCompat.getDrawable(this@MovieActivity, R.drawable.shadows) as LayerDrawable
+                val layerDrawable: LayerDrawable = ContextCompat.getDrawable(this@MovieActivity,
+                    R.drawable.shadows
+                ) as LayerDrawable
                 val movieCover = BitmapDrawable(resources,bitmap)
                 layerDrawable.setDrawableByLayerId(R.id.cover_drawable, movieCover)
                 val coverImg : ImageView = findViewById(R.id.movie_img)

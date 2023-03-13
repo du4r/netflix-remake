@@ -1,4 +1,4 @@
-package com.example.netflixremake
+package com.example.netflixremake.ui.adapters
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import com.example.netflixremake.R
 import com.example.netflixremake.models.Movie
 import com.example.netflixremake.utils.DownloadImageTask
 

@@ -1,14 +1,13 @@
-package com.example.netflixremake
+package com.example.netflixremake.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.netflixremake.R
 import com.example.netflixremake.models.Category
-import com.example.netflixremake.models.Movie
 
 class CategoryAdapter(
     private val categories: List<Category>,

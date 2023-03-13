@@ -1,4 +1,4 @@
-package com.example.netflixremake
+package com.example.netflixremake.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +9,9 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.netflixremake.ui.adapters.CategoryAdapter
+import com.example.netflixremake.R
 import com.example.netflixremake.models.Category
-import com.example.netflixremake.models.Movie
 import com.example.netflixremake.utils.CategoryTask
 
 class MainActivity : AppCompatActivity(), CategoryTask.Callback {
